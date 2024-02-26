@@ -1,0 +1,29 @@
+---
+import BaseHead from "@components/BaseHead.astro";
+import i18next, { t } from "i18next";
+import { Trans, HeadHrefLangs } from "astro-i18next/components";
+
+const {
+  image,
+  title = t("site.title"),
+  description = t("site.description"),
+  ogType,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={i18next.language}>
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      ,
+      ogType={ogType}
+    />
+    <HeadHrefLangs />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
