@@ -1,0 +1,11 @@
+{
+  "vue3snippets.enable-compile-vue-file-on-did-save-code": false,
+  "editor.formatOnSave": true,
+  "eslint.validate": ["javascript", "vue", "astro"],
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

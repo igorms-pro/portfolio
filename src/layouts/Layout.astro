@@ -2,6 +2,7 @@
 import BaseHead from "@components/BaseHead.astro";
 import i18next, { t } from "i18next";
 import { Trans, HeadHrefLangs } from "astro-i18next/components";
+import Header from "@components/Header.vue";
 
 const {
   image,
@@ -18,31 +19,39 @@ const {
       title={title}
       description={description}
       image={image}
-      ,
       ogType={ogType}
     />
     <HeadHrefLangs />
   </head>
   <body>
-    <slot />
-  </body><script is:inline>
-    const theme = (() => {
-      if (
-        typeof localStorage !== "undefined" &&
-        localStorage.getItem("theme")
-      ) {
-        return localStorage.getItem("theme");
-      }
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "dark";
-      }
-      return "light";
-    })();
+    <div id="main-container" class="min-h-screen">
+      <Header client:only="vue"  />
+      <slot />
+    </div>
+    <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
 
-    if (theme === "light") {
-      document.documentElement.classList.remove("dark");
-    } else {
-      document.documentElement.classList.add("dark");
-    }
-  </script>
+      console.log("theme", theme);
+      if (theme === "light") {
+        document.documentElement.classList.remove("dark");
+        document.getElementById("main-container").classList.add("bg-white");
+        document.getElementById("main-container").classList.remove("bg-dark");
+      } else {
+        document.documentElement.classList.add("dark");
+        document.getElementById("main-container").classList.add("bg-dark");
+        document.getElementById("main-container").classList.remove("bg-white");
+      }
+    </script>
+  </body>
 </html>

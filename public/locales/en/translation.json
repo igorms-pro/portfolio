@@ -1,6 +1,13 @@
 {
-    "site": {
-        "title": "Igor | Personal Portfolio",
-        "description": "Welcome to Igor personal portfolio!"
-    }
+  "site": {
+    "title": "Igor | Personal Portfolio",
+    "description": "Welcome to Igor personal portfolio!"
+  },
+  "menu": {
+    "about": "About",
+    "skillsAndTools": "Skills and Tools",
+    "work": "Work",
+    "testimonials": "Testimonials",
+    "contact": "Contact"
+  }
 }
