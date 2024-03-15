@@ -1,15 +1,15 @@
 ---
-import BaseHead from "@components/BaseHead.astro";
-import i18next, { t } from "i18next";
-import { Trans, HeadHrefLangs } from "astro-i18next/components";
-import Header from "@components/Header.vue";
+import BaseHead from '@components/BaseHead.astro'
+import i18next, { t } from 'i18next'
+import { Trans, HeadHrefLangs } from 'astro-i18next/components'
+import Header from '@components/Header.vue'
 
 const {
   image,
-  title = t("site.title"),
-  description = t("site.description"),
+  title = t('site.title'),
+  description = t('site.description'),
   ogType,
-} = Astro.props;
+} = Astro.props
 ---
 
 <!doctype html>
@@ -25,32 +25,39 @@ const {
   </head>
   <body>
     <div id="main-container" class="min-h-screen">
-      <Header client:only="vue"  />
-      <slot />
+      <Header client:only="vue" />
+      <div class="sm:px-12 px-5">
+        <slot />
+      </div>
     </div>
     <script is:inline>
       const theme = (() => {
-        if (
-          typeof localStorage !== "undefined" &&
-          localStorage.getItem("theme")
-        ) {
-          return localStorage.getItem("theme");
+        let storedTheme
+        try {
+          storedTheme = localStorage.getItem('theme')
+        } catch (e) {
+          // Handle localStorage issues, like privacy mode
+          console.error('Could not access localStorage for theme', e)
         }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        }
-        return "light";
-      })();
 
-      console.log("theme", theme);
-      if (theme === "light") {
-        document.documentElement.classList.remove("dark");
-        document.getElementById("main-container").classList.add("bg-white");
-        document.getElementById("main-container").classList.remove("bg-dark");
-      } else {
-        document.documentElement.classList.add("dark");
-        document.getElementById("main-container").classList.add("bg-dark");
-        document.getElementById("main-container").classList.remove("bg-white");
+        if (storedTheme) {
+          return storedTheme
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark'
+        }
+        return 'light'
+      })()
+
+      // Set the global theme variable
+      window.theme = theme
+
+      // Update the page based on the theme
+      document.documentElement.classList.toggle('dark', theme === 'dark')
+      const mainContainer = document.getElementById('main-container')
+      if (mainContainer) {
+        mainContainer.classList.toggle('bg-dark', theme === 'dark')
+        mainContainer.classList.toggle('bg-white', theme === 'light')
       }
     </script>
   </body>

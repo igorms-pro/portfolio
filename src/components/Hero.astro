@@ -1,0 +1,69 @@
+---
+// Import necessary scripts or styles here
+---
+
+<section class="hero my-10">
+  <div class="dark:text-gray-light text-light flex justify-between">
+    <div class="w-1/3">
+      <h1>Igor</h1>
+      <h1>Moreno Semedo</h1>
+    </div>
+
+    <div class="w-1/3">
+      <p>Senior Software Developer</p>
+      <p>Based in France</p>
+      <div class="flex items-center justify-between">
+        <!-- Replace # with your actual links -->
+        <a
+          id="social-link-linkedin"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img id="social-img-linkedin" src="" alt="LinkedIn" />
+        </a>
+        <a
+          id="social-link-instagram"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img id="social-img-instagram" src="" alt="Instagram" />
+        </a>
+        <a
+          id="social-link-fb"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img id="social-img-fb" src="" alt="Facebook" />
+        </a>
+        <a
+          id="social-link-twitter"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img id="social-img-twitter" src="" alt="Twitter" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const updateSocialIcons = () => {
+    const theme = window.theme || 'light'
+    document.querySelectorAll('.social-links a').forEach((link) => {
+      const platform = link.id.replace('social-link-', '')
+      const img = link.querySelector('img')
+      img.src = `src/assets/socials/${platform}_${theme}.svg`
+    })
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateSocialIcons)
+  } else {
+    updateSocialIcons()
+  }
+</script>
