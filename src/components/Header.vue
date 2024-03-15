@@ -39,7 +39,7 @@
     >
       <div class="fixed inset-0 z-10" />
       <DialogPanel
-        class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+        class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white dark:bg-dark px-6 py-6 dark:text-gray-light text-white sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
       >
         <div class="flex items-center justify-between">
           <a href="#" class="-m-1.5 p-1.5">
@@ -47,7 +47,7 @@
           </a>
           <button
             type="button"
-            class="-m-2.5 rounded-md p-2.5 text-gray-700"
+            class="-m-2.5 rounded-md p-2.5"
             @click="mobileMenuOpen = false"
           >
             <span class="sr-only">Close menu</span>
@@ -55,30 +55,63 @@
           </button>
         </div>
         <div class="mt-6 flow-root">
-          <div class="-my-6 divide-y divide-gray-500/10">
+          <div class="-my-6 divide-y dark:divide-gray-divide/70">
             <div class="space-y-2 py-6">
               <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Features</a
+                href="#about"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50"
+                >About</a
               >
               <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Marketplace</a
+                href="#skills"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50"
+                >Skills and Tools</a
               >
               <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Company</a
+                href="#work"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50"
+                >Work</a
+              >
+              <a
+                href="#testimonials"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50"
+                >Testimonials</a
+              >
+              <a
+                href="#contact"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50"
+                >Contact</a
               >
             </div>
             <div class="py-6">
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Log in</a
+              <span
+                class="block rounded-lg py-1 text-base font-light leading-7"
               >
+                Socials
+              </span>
+              <!-- Add Picto? -->
+              <div class="flex justify-start space-x-3 items-center mb-5">
+                <a href=""> Instagram </a>
+                <a href=""> Linkedin </a>
+                <a href=""> Facebook </a>
+                <a href=""> Twitter </a>
+              </div>
+              <div class="flex justify-start space-x-3 items-center">
+                <SunIcon
+                  v-if="theme === 'dark'"
+                  class="h-6 w-6 cursor-pointer"
+                  aria-hidden="true"
+                />
+                <MoonIcon
+                  v-if="theme === 'light'"
+                  class="h-6 w-6 cursor-pointer"
+                  aria-hidden="true"
+                />
+                <GlobeAltIcon
+                  class="h-6 w-6 cursor-pointer"
+                  aria-hidden="true"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -120,6 +153,7 @@ import {
 } from '@heroicons/vue/20/solid'
 
 const theme = ref('')
+const mobileMenuOpen = ref(false)
 
 watchEffect(() => {
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
