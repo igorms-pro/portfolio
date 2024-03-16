@@ -11,6 +11,9 @@ export default {
           divide: '#B1B0B9',
         },
       },
+      backgroundImage: {
+        'hero-pattern': "url('src/assets/images/igor.svg')",
+      },
     },
   },
   plugins: [],

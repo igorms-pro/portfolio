@@ -5,7 +5,7 @@
     >
       <div class="flex flex-1 h-full sm:h-auto">
         <a href="#" class="-m-1.5 p-1.5">
-          <span class="">© Igor Moreno Semedo</span>
+          <span class="">© IMS</span>
         </a>
       </div>
       <span @click="mobileMenuOpen = true" class="lg:hidden h-full"> Menu</span>
@@ -43,7 +43,7 @@
       >
         <div class="flex items-center justify-between">
           <a href="#" class="-m-1.5 p-1.5">
-            <span>© Igor Moreno Semedo</span>
+            <span>© IMS</span>
           </a>
           <button
             type="button"
