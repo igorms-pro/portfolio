@@ -1,5 +1,5 @@
 <template lang="">
-  <header class="bg-transparent">
+  <header class="dark:bg-[#191B1F] bg-[#999D9E]">
     <nav
       class="sm:p-10 p-5 font-normal flex h-10 items-center text-white text-xl dark:text-gray-light"
     >

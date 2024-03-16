@@ -26,9 +26,7 @@ const {
   <body>
     <div id="main-container" class="min-h-screen">
       <Header client:only="vue" />
-      <div class="sm:px-12 px-5">
-        <slot />
-      </div>
+      <slot />
     </div>
     <script is:inline>
       const theme = (() => {
