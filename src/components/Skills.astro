@@ -1,0 +1,40 @@
+---
+// Your Astro frontmatter script
+
+// Define your slides data
+const slides = ['Slide 1', 'Slide 2', 'Slide 3'];
+---
+
+<!-- ProjectSlider.astro -->
+<section id="ProjectSlider" class="swiper text-white text-center h-14 ny-10">
+    <ul class="swiper-wrapper" data-cursor="swipe">
+        {
+            slides.map((slide) => (
+                <li class="swiper-slide">
+                    <p>{slide}</p> <!-- Text for each slide -->
+                </li>
+            ))
+        }
+    </ul>
+</section>
+
+<script>
+
+    import 'swiper/css'; // Import Swiper CSS
+    import Swiper from 'swiper'; // Import Swiper
+    import { register } from 'swiper/element/bundle'; // Import the register function
+    // Register Swiper custom elements and initialize the Swiper
+    register(); // This registers Swiper custom elements globally
+    
+    // Initialize Swiper - Make sure the DOM content is fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        new Swiper('#ProjectSlider', {
+            loop: true,
+            autoplay: false,
+            grabCursor: false,
+            mousewheel: true,
+            slidesPerView: "auto",
+            spaceBetween: 30,
+        });
+    });
+</script>
