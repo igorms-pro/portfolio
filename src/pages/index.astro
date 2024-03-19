@@ -2,8 +2,8 @@
 import Layout from '@layouts/Layout.astro'
 import Hero from '@components/Hero.astro'
 import AboutMe from '@components/AboutMe.astro'
-// import Skills from '@components/Skills.vue'
 import Skills from '@components/Skills.astro'
+import Experiences from '@components/Experiences.vue'
 ---
 
 <Layout>
@@ -11,5 +11,6 @@ import Skills from '@components/Skills.astro'
     <Hero />
     <AboutMe />
     <Skills />
+    <Experiences client:only="vue" />
   </main>
 </Layout>
