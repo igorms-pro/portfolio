@@ -1,5 +1,5 @@
 ---
-import Divider from './Divider.astro'
+import Divider from './Divider.vue'
 const skills = [
   'angular',
   'astro',
@@ -21,12 +21,12 @@ const skills = [
   id="skillsSlider"
   class="swiper text-white text-center h-auto my-10 sm:px-12 px-5"
 >
-  <Divider label="Skills" circleClassNames="left-1/4" />
+  <Divider label="Skills" circleClassNames="left-1/4" client:only />
 
-  <ul class="swiper-wrapper sm:px-12 px-5" data-cursor="swipe">
+  <ul class="swiper-wrapper sm:px-12 px-5 sm:mt-10 mt-7" data-cursor="swipe">
     {
       skills.map((skill) => (
-        <li class="swiper-slide text-center mx-auto ">
+        <li class="swiper-slide text-center mx-auto">
           <img
             src={`src/assets/stack/${skill}.svg`}
             alt={skill}
