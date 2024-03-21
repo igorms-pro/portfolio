@@ -52,6 +52,12 @@ const {
       // Set the global theme variable
       window.theme = theme
 
+      try {
+        localStorage.setItem('theme', theme)
+      } catch (e) {
+        console.error('Could not save theme to localStorage', e)
+      }
+
       // Update the page based on the theme
       document.documentElement.classList.toggle('dark', theme === 'dark')
       const mainContainer = document.getElementById('main-container')

@@ -21,11 +21,13 @@
           v-if="theme === 'dark'"
           class="h-6 w-6 cursor-pointer"
           aria-hidden="true"
+          @click="toggleTheme"
         />
         <MoonIcon
           v-if="theme === 'light'"
           class="h-6 w-6 cursor-pointer"
           aria-hidden="true"
+          @click="toggleTheme"
         />
         <GlobeAltIcon class="h-6 w-6 cursor-pointer" aria-hidden="true" />
       </div>
@@ -101,11 +103,13 @@
                   v-if="theme === 'dark'"
                   class="h-6 w-6 cursor-pointer"
                   aria-hidden="true"
+                  @click="toggleTheme"
                 />
                 <MoonIcon
                   v-if="theme === 'light'"
                   class="h-6 w-6 cursor-pointer"
                   aria-hidden="true"
+                  @click="toggleTheme"
                 />
                 <GlobeAltIcon
                   class="h-6 w-6 cursor-pointer"
@@ -121,7 +125,7 @@
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, watch } from 'vue'
 import {
   Dialog,
   DialogPanel,
@@ -155,10 +159,30 @@ import {
 const theme = ref('')
 const mobileMenuOpen = ref(false)
 
+const toggleTheme = () => {
+  console.log('ALLLO')
+  theme.value = theme.value === 'dark' ? 'light' : 'dark'
+}
+
 watchEffect(() => {
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  theme.value = prefersDark ? 'dark' : 'light'
+  const storedTheme = localStorage.getItem('theme')
+
+  // Use stored theme if available, else use system preference
+  theme.value = storedTheme ? storedTheme : prefersDark ? 'dark' : 'light'
+
+  // Apply the theme
+  document.documentElement.classList.toggle('dark', theme.value === 'dark')
 })
+
+// Watch for changes in theme and update localStorage and document
+watch(
+  () => theme.value,
+  (newTheme) => {
+    localStorage.setItem('theme', newTheme)
+    document.documentElement.classList.toggle('dark', newTheme === 'dark')
+  },
+)
 </script>
 
 <style lang=""></style>
