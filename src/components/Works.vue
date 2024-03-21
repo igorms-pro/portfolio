@@ -5,7 +5,11 @@
       <div
         v-for="(work, index) in works"
         :key="`work.id_${index}`"
-        class="dark:!text-white !text-[#1A1A1A] mx-auto text-left border-b dark:border-b-[#565560] border-b-[#1A1A1A] mb-5"
+        :class="[
+          index < works.length - 1 &&
+            'border-b dark:border-b-[#565560] border-b-[#1A1A1A]',
+          'dark:!text-white !text-[#1A1A1A] mx-auto text-left mb-5',
+        ]"
       >
         <div class="flex flex-col gap-3 space-y-1">
           <a

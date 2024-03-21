@@ -1,7 +1,7 @@
 <template>
   <div class="relative flex flex-col justify-center items-center w-full h-52">
     <div
-      class="absolute top-1/2 left-0 w-full border-t dark:border-[#82808F] border-gray-divide transform -translate-y-1/2"
+      class="absolute top-1/2 left-0 w-full border-t dark:border-[#82808F]/50 border-gray-divide transform -translate-y-1/2"
     ></div>
     <div :class="`absolute flex justify-start ${circleClassNames}`">
       <div

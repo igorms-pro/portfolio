@@ -5,14 +5,16 @@ import AboutMe from '@components/AboutMe.astro'
 import Skills from '@components/Skills.astro'
 import Experiences from '@components/Experiences.vue'
 import Works from '@components/Works.vue'
+import Contact from '@components/Contact.astro'
 ---
 
 <Layout>
-  <main>
+  <>
     <Hero />
     <AboutMe />
     <Skills />
     <Experiences client:only="vue" />
     <Works client:only="vue" />
-  </main>
+    <Contact />
+  </>
 </Layout>
