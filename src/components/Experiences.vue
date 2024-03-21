@@ -1,5 +1,8 @@
 <template>
-  <section class="experience sm:px-12 px-5 sm:h-[400px] h-auto">
+  <section
+    id="experiences"
+    class="experience sm:px-12 px-5 sm:h-[400px] h-auto"
+  >
     <Divider label="Experiences" circleClassNames="sm:left-1/2" />
     <div class="sm:flex block dark:text-gray-light text-[#1A1A1A] h-full">
       <!-- Left Panel  -->

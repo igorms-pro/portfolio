@@ -14,8 +14,8 @@
       >
         <a href="#about" class="text-sm leading-6">About</a>
         <a href="#skills" class="text-sm leading-6">Skills and Tools</a>
-        <a href="#work" class="text-sm leading-6">Work</a>
-        <a href="#testimonials" class="text-sm leading-6">Testimonials</a>
+        <a href="#experiences" class="text-sm leading-6">Experiences</a>
+        <a href="#works" class="text-sm leading-6">Works</a>
         <a href="#contact" class="text-sm leading-6">Contact</a>
         <SunIcon
           v-if="theme === 'dark'"
