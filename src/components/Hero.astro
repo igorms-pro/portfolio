@@ -128,7 +128,7 @@
     document.querySelectorAll('.social-links a').forEach((link) => {
       const platform = link.id.replace('social-link-', '')
       const img = link.querySelector('img')
-      img.src = `src/assets/socials/${platform}_${theme}.svg`
+      img.src = `/assets/socials/${platform}_${theme}.svg`
     })
   }
 

@@ -13,7 +13,7 @@ export default {
         purple: '#6938EF',
       },
       backgroundImage: {
-        'hero-pattern': "url('src/assets/images/igor.svg')",
+        'hero-pattern': "url('/assets/images/igor.svg')",
       },
     },
   },
