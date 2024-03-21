@@ -3,6 +3,7 @@ import BaseHead from '@components/BaseHead.astro'
 import i18next, { t } from 'i18next'
 import { Trans, HeadHrefLangs } from 'astro-i18next/components'
 import Header from '@components/Header.vue'
+import Footer from '@components/Footer.astro'
 
 const {
   image,
@@ -27,6 +28,7 @@ const {
     <div id="main-container" class="min-h-screen">
       <Header client:only="vue" />
       <slot />
+      <Footer />
     </div>
     <script is:inline>
       const theme = (() => {

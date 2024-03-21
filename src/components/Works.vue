@@ -8,14 +8,14 @@
         :class="[
           index < works.length - 1 &&
             'border-b dark:border-b-[#565560] border-b-[#1A1A1A]',
-          'dark:!text-white !text-[#1A1A1A] mx-auto text-left mb-5',
+          'dark:!text-white !text-[#1A1A1A] mx-auto sm:text-left text-center mb-5',
         ]"
       >
         <div class="flex flex-col gap-3 space-y-1">
           <a
             :href="work.links[0]"
             target="_blank"
-            class="sm:text-6xl font-semibold text-4xl hover:opacity-60"
+            class="text-6xl font-semibold hover:opacity-60"
           >
             {{ work.title }}
           </a>
