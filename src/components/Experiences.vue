@@ -1,7 +1,7 @@
 <template>
-  <section class="experience sm:px-12 px-5 sm:h-[350px]">
+  <section class="experience sm:px-12 px-5 sm:h-[400px]">
     <Divider label="Experiences" circleClassNames="left-1/2" />
-    <div class="flex dark:text-gray-light text-[#565560] h-full">
+    <div class="flex dark:text-gray-light text-[#1A1A1A] h-full">
       <!-- Left Panel -->
       <div class="w-1/3">
         <ul>
@@ -10,8 +10,10 @@
             :key="experience.company"
             @click="selectedExperienceIndex = index"
             :class="[
-              selectedExperienceIndex === index ? '!bg-purple text-white' : '',
-              'cursor-pointer h-14 sm:w-52 hover:bg-purple/20 flex justify-center items-center  border-l border-l-gray-light',
+              selectedExperienceIndex === index
+                ? 'dark:!bg-purple !bg-[#1F1E1E] text-white'
+                : '',
+              'cursor-pointer h-14 sm:w-52 dark:hover:bg-purple/20 hover:bg-[#1F1E1E]/20 flex justify-center items-center  border-l border-l-gray-light ',
             ]"
           >
             {{ experience.company }}
@@ -21,13 +23,31 @@
       <!-- Right Panel -->
       <div class="w-2/3 ml-10 h-full">
         <div v-if="selectedExperience">
-          <h2 class="text-xl font-bold">
-            {{ selectedExperience.title }} @ {{ selectedExperience.company }}
+          <h2 class="text-xl mb-5">
+            <span class="font-medium dark:text-[#D0D0D5] text-[#1A1A1A]">
+              {{ selectedExperience.role }}
+            </span>
+            <a
+              :href="selectedExperience.link"
+              class="font-normal text-purple"
+              target="_blank"
+            >
+              @ {{ selectedExperience.company }}
+            </a>
           </h2>
-          <p class="text-gray-700">{{ selectedExperience.period }}</p>
-          <ul>
-            <li v-for="detail in selectedExperience.details" :key="detail">
-              {{ detail }}
+          <p class="text-purple text-lg">
+            {{ selectedExperience.period }}, {{ selectedExperience.type }}
+          </p>
+          <ul class="mt-2">
+            <li
+              v-for="(detail, index) in selectedExperience.details"
+              :key="detail"
+              :class="[
+                index === 0 && 'font-semibold italic',
+                'text-[#565560] dark:text-gray-light my-3',
+              ]"
+            >
+              {{ index > 0 ? '- ' + detail : detail }}
             </li>
           </ul>
         </div>
@@ -41,10 +61,23 @@ import { ref, watch } from 'vue'
 
 const experiences = [
   {
+    company: 'Cometh',
+    link: 'https://www.cometh.io/',
+    location: 'Paris, France',
+    role: 'Senior Front-end Engineer',
+    period: '29 January 2024 – Currently',
+    type: 'Permanent',
+    details: [
+      'Working on global client projects and helping improve products like Connect',
+      'FDJ: Working on a digital gaming project involving strategic collection and use of unique numerical assets in a competitive global environment.',
+    ],
+  },
+  {
     company: 'Consensys',
-    location: 'New York, USA',
-    role: 'FullStack Engineer',
-    period: '16 August 2021 – Currently',
+    link: 'https://consensys.io/',
+    location: 'Paris, France',
+    role: 'Senior FullStack Engineer',
+    period: '16 August 2021 – 26 January 2024',
     type: 'Permanent',
     details: [
       'Worked on global client projects and helped improve products like MetaMask and Linea',
@@ -56,6 +89,7 @@ const experiences = [
   },
   {
     company: 'Few and Far',
+    link: 'https://fewandfar.xyz/',
     location: 'Los Angeles, USA',
     role: 'Front-end Engineer',
     period: 'March 2022 – January 2023',
@@ -68,6 +102,7 @@ const experiences = [
   },
   {
     company: 'Ubiplace',
+    link: 'https://www.ubiplace.com/',
     location: 'Nice, France',
     role: 'Front-end Engineer',
     period: 'Aug – Oct 2021 & Aug – Dec 2020',
@@ -79,6 +114,7 @@ const experiences = [
   },
   {
     company: 'Accenture',
+    link: 'https://www.accenture.com/us-en',
     location: 'Sophia Antipolis, France',
     role: 'Analyst',
     period: 'January 2016 – August 2021',
