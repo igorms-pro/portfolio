@@ -1,10 +1,11 @@
 <template>
-  <section class="experience sm:px-12 px-5 sm:h-[400px]">
-    <Divider label="Experiences" circleClassNames="left-1/2" />
-    <div class="flex dark:text-gray-light text-[#1A1A1A] h-full">
-      <!-- Left Panel -->
-      <div class="w-1/3">
-        <ul>
+  <section class="experience sm:px-12 px-5 sm:h-[400px] h-auto">
+    <Divider label="Experiences" circleClassNames="sm:left-1/2" />
+    <div class="sm:flex block dark:text-gray-light text-[#1A1A1A] h-full">
+      <!-- Left Panel  -->
+      <div class="sm:w-1/3 w-full">
+        <!-- DESKTOP -->
+        <ul class="sm:block hidden">
           <li
             v-for="(experience, index) in experiences"
             :key="experience.company"
@@ -19,23 +20,46 @@
             {{ experience.company }}
           </li>
         </ul>
+        <!-- MOBILE -->
+        <swiper-container
+          class="sm:hidden block mb-10"
+          slides-per-view="3"
+          space-between="10"
+          loop="true"
+        >
+          <swiper-slide
+            v-for="(experience, index) in experiences"
+            :key="experience.company"
+            @click="selectedExperienceIndex = index"
+            :class="[
+              selectedExperienceIndex === index
+                ? 'dark:!bg-purple !bg-[#1F1E1E] text-white'
+                : '',
+              'h-10  rounded flex justify-center items-center',
+            ]"
+          >
+            {{ experience.company }}
+          </swiper-slide>
+        </swiper-container>
       </div>
       <!-- Right Panel -->
-      <div class="w-2/3 ml-10 h-full">
+      <div class="sm:w-2/3 sm:ml-10 w-full h-full">
         <div v-if="selectedExperience">
-          <h2 class="text-xl mb-5">
-            <span class="font-medium dark:text-[#D0D0D5] text-[#1A1A1A]">
+          <div class="text-xl mb-5 sm:flex sm:space-x-3 block item-center">
+            <p
+              class="font-medium dark:text-[#D0D0D5] text-[#1A1A1A] sm:mb-0 mb-2"
+            >
               {{ selectedExperience.role }}
-            </span>
+            </p>
             <a
               :href="selectedExperience.link"
               class="font-normal text-purple"
               target="_blank"
             >
-              @ {{ selectedExperience.company }}
+              @{{ selectedExperience.company }}
             </a>
-          </h2>
-          <p class="text-purple text-lg">
+          </div>
+          <p class="text-purple text-base">
             {{ selectedExperience.period }}, {{ selectedExperience.type }}
           </p>
           <ul class="mt-2">
@@ -44,7 +68,7 @@
               :key="detail"
               :class="[
                 index === 0 && 'font-semibold italic',
-                'text-[#565560] dark:text-gray-light my-3',
+                'text-[#565560] dark:text-gray-light my-3 leading-relaxed',
               ]"
             >
               {{ index > 0 ? '- ' + detail : detail }}
@@ -57,7 +81,8 @@
 </template>
 <script setup>
 import Divider from './Divider.vue'
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
+import { register } from 'swiper/element/bundle'
 
 const experiences = [
   {
@@ -130,10 +155,12 @@ const experiences = [
     ],
   },
 ]
-
 const selectedExperienceIndex = ref(0)
-
 const selectedExperience = ref(experiences[0])
+
+onMounted(() => {
+  register()
+})
 
 watch(
   () => selectedExperienceIndex.value,

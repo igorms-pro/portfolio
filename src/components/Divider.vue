@@ -5,7 +5,7 @@
     ></div>
     <div :class="`absolute flex justify-start ${circleClassNames}`">
       <div
-        class="dark:bg-purple bg-dark rounded-full sm:w-32 sm:h-32 h-20 w-20 flex items-center justify-center text-white sm:text-lg text-sm font-medium shadow-md"
+        class="dark:bg-purple bg-dark rounded-full sm:w-32 sm:h-32 h-[85px] w-[85px] flex items-center justify-center text-white sm:text-lg text-sm font-medium shadow-md"
       >
         {{ label }}
       </div>
