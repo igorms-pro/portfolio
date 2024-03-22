@@ -31,40 +31,42 @@ const {
       <Footer />
     </div>
     <script is:inline>
-      const theme = (() => {
+      let theme = (() => {
         let storedTheme
         try {
           storedTheme = localStorage.getItem('theme')
         } catch (e) {
-          // Handle localStorage issues, like privacy mode
           console.error('Could not access localStorage for theme', e)
         }
-
-        if (storedTheme) {
-          return storedTheme
-        }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark'
-        }
-        return 'light'
+        return (
+          storedTheme ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light')
+        )
       })()
 
-      // Set the global theme variable
-      window.theme = theme
-
-      try {
-        localStorage.setItem('theme', theme)
-      } catch (e) {
-        console.error('Could not save theme to localStorage', e)
-      }
-
-      // Update the page based on the theme
       document.documentElement.classList.toggle('dark', theme === 'dark')
       const mainContainer = document.getElementById('main-container')
       if (mainContainer) {
         mainContainer.classList.toggle('bg-dark', theme === 'dark')
         mainContainer.classList.toggle('bg-white', theme === 'light')
       }
+
+      window.addEventListener('themeChange', (e) => {
+        const newTheme = e.detail.theme
+        theme = newTheme
+        document.documentElement.classList.toggle('dark', newTheme === 'dark')
+        if (mainContainer) {
+          mainContainer.classList.toggle('bg-dark', newTheme === 'dark')
+          mainContainer.classList.toggle('bg-white', newTheme === 'light')
+        }
+        try {
+          localStorage.setItem('theme', newTheme)
+        } catch (e) {
+          console.error('Could not save theme to localStorage', e)
+        }
+      })
     </script>
   </body>
 </html>

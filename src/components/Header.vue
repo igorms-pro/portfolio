@@ -5,31 +5,40 @@
     >
       <div class="flex flex-1 h-full sm:h-auto">
         <a href="#" class="-m-1.5 p-1.5">
-          <span class="">© IMS</span>
+          <span class="hover:opacity-50">© IMS</span>
         </a>
       </div>
       <span @click="mobileMenuOpen = true" class="lg:hidden h-full"> Menu</span>
       <div
         class="hidden sm:flex flex-auto text-white items-center space-x-12 h-9"
       >
-        <a href="#about" class="text-sm leading-6">About</a>
-        <a href="#skills" class="text-sm leading-6">Skills and Tools</a>
-        <a href="#experiences" class="text-sm leading-6">Experiences</a>
-        <a href="#works" class="text-sm leading-6">Works</a>
-        <a href="#contact" class="text-sm leading-6">Contact</a>
+        <a href="#about" class="text-sm leading-6 hover:opacity-50">About</a>
+        <a href="#skills" class="text-sm leading-6 hover:opacity-50"
+          >Skills and Tools</a
+        >
+        <a href="#experiences" class="text-sm leading-6 hover:opacity-50"
+          >Experiences</a
+        >
+        <a href="#works" class="text-sm leading-6 hover:opacity-50">Works</a>
+        <a href="#contact" class="text-sm leading-6 hover:opacity-50"
+          >Contact</a
+        >
         <SunIcon
           v-if="theme === 'dark'"
-          class="h-6 w-6 cursor-pointer"
+          class="h-6 w-6 cursor-pointer hover:opacity-50"
           aria-hidden="true"
           @click="toggleTheme"
         />
         <MoonIcon
           v-if="theme === 'light'"
-          class="h-6 w-6 cursor-pointer"
+          class="h-6 w-6 cursor-pointer hover:opacity-50"
           aria-hidden="true"
           @click="toggleTheme"
         />
-        <GlobeAltIcon class="h-6 w-6 cursor-pointer" aria-hidden="true" />
+        <GlobeAltIcon
+          class="h-6 w-6 cursor-pointer hover:opacity-50"
+          aria-hidden="true"
+        />
       </div>
     </nav>
     <!-- Mobile menu, show/hide based on menu open  state. -->
@@ -41,7 +50,7 @@
     >
       <div class="fixed inset-0 z-10" />
       <DialogPanel
-        class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white dark:bg-dark px-6 py-6 dark:text-gray-light text-white sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+        class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-[#999D9E] dark:bg-dark px-6 py-6 dark:text-gray-light text-white sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
       >
         <div class="flex items-center justify-between">
           <a href="#" class="-m-1.5 p-1.5">
@@ -160,22 +169,26 @@ const theme = ref('')
 const mobileMenuOpen = ref(false)
 
 const toggleTheme = () => {
-  console.log('ALLLO')
-  theme.value = theme.value === 'dark' ? 'light' : 'dark'
+  const newTheme = theme.value === 'dark' ? 'light' : 'dark' // Determine the new theme.
+  theme.value = newTheme // Update the Vue reactive theme.
+
+  window.theme = newTheme
+  document.documentElement.classList.toggle('dark', newTheme === 'dark') // Apply the new theme immediately.
+  localStorage.setItem('theme', newTheme) // Persist the new theme.
+  window.dispatchEvent(
+    new CustomEvent('themeChange', { detail: { theme: newTheme } }),
+  )
 }
 
 watchEffect(() => {
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
   const storedTheme = localStorage.getItem('theme')
 
-  // Use stored theme if available, else use system preference
   theme.value = storedTheme ? storedTheme : prefersDark ? 'dark' : 'light'
 
-  // Apply the theme
   document.documentElement.classList.toggle('dark', theme.value === 'dark')
 })
 
-// Watch for changes in theme and update localStorage and document
 watch(
   () => theme.value,
   (newTheme) => {
