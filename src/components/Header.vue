@@ -1,7 +1,7 @@
 <template lang="">
   <header class="dark:bg-[#191B1F] bg-[#999D9E]">
     <nav
-      class="sm:p-10 p-5 font-normal flex h-10 items-center text-white text-xl dark:text-gray-light"
+      class="sm:p-10 p-5 font-normal flex sm:h-10 h-14 items-center text-white text-xl dark:text-gray-light"
     >
       <div class="flex flex-1 h-full sm:h-auto">
         <a href="#" class="-m-1.5 p-1.5">
@@ -35,10 +35,10 @@
           aria-hidden="true"
           @click="toggleTheme"
         />
-        <GlobeAltIcon
+        <!-- <GlobeAltIcon
           class="h-6 w-6 cursor-pointer hover:opacity-50"
           aria-hidden="true"
-        />
+        /> -->
       </div>
     </nav>
     <!-- Mobile menu, show/hide based on menu open  state. -->
@@ -120,10 +120,10 @@
                   aria-hidden="true"
                   @click="toggleTheme"
                 />
-                <GlobeAltIcon
+                <!-- <GlobeAltIcon
                   class="h-6 w-6 cursor-pointer"
                   aria-hidden="true"
-                />
+                /> -->
               </div>
             </div>
           </div>
